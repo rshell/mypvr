@@ -1,8 +1,10 @@
-
-
 task :rename do
 
-  root = "/Volumes/tv1/Films"
+  root = if ENV['DIR'].blank?
+           "/disks/tv1/Films"
+         else
+           ENV['DIR']
+         end
 
   Dir["#{root}/**/*.*"].each do |entry|
     dir= File.dirname(entry)
@@ -15,14 +17,14 @@ task :rename do
         series = $1
         episode =$2
         if episode.include?(series)
-           if /^(.*)_(b[0-9a-z]*)\_default$/ =~ episode
-             episode = $1
-             puts "mv  #{entry} #{dir}/#{episode}.#{ext}"
-             FileUtils.mv entry, "#{dir}/#{episode}.#{ext}"
-           else
-             puts "mv  #{entry} #{dir}/#{episode}.#{ext}"
-             FileUtils.mv entry, "#{dir}/#{episode}.#{ext}"
-           end
+          if /^(.*)_(b[0-9a-z]*)\_default$/ =~ episode
+            episode = $1
+            puts "mv  #{entry} #{dir}/#{episode}.#{ext}"
+            FileUtils.mv entry, "#{dir}/#{episode}.#{ext}"
+          else
+            puts "mv  #{entry} #{dir}/#{episode}.#{ext}"
+            FileUtils.mv entry, "#{dir}/#{episode}.#{ext}"
+          end
         else
           puts "skipped #{series} in #{episode}"
         end
