@@ -72,6 +72,7 @@ GEM
       execjs
     coffee-script-source (1.8.0)
     colorize (0.7.3)
+    concurrent-ruby (1.1.10)
     crack (0.4.2)
       safe_yaml (~> 1.0.0)
     daemon_controller (1.2.0)
@@ -111,7 +112,8 @@ GEM
     httpi (2.3.0)
       rack
     hub (1.12.2)
-    i18n (0.6.11)
+    i18n (0.9.5)
+      concurrent-ruby (~> 1.0)
     jbuilder (2.2.5)
       activesupport (>= 3.0.0, < 5)
       multi_json (~> 1.2)
